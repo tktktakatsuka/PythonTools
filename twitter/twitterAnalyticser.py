@@ -1,5 +1,6 @@
 
 import os
+from tkinter import messagebox
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -9,26 +10,32 @@ import tkinter.ttk as ttk
 
 
 
-def csvGrep(csv1,csv2,csv3,year1,month1,day1,year2,month2,day2):
+def csvGrep(csv1,csv2,csv3,koumoku,year1,month1,day1,year2,month2,day2):
     print(os.getcwd())
     print(month2 )
 
-    
-    #TweetのデータをDataFrameに格納
-    df_June      = pd.read_csv(csv1)
-    df_july      = pd.read_csv(csv2)
+    csvlist = []
 
-    df_augast    = pd.read_csv(csv3)
-    combine = [ df_july , df_augast , df_June ]
+    #TweetのデータをDataFrameに格納
+    if csv1 is not "":
+        csvlist.append(pd.read_csv(csv1))
+    if csv2 is not "":
+        csvlist.append(pd.read_csv(csv2))
+    if csv3 is not "":
+        csvlist.append(pd.read_csv(csv3))
+
+
+    
     #print(df_july.columns.values)
-    tweets_df = pd.concat(combine)
+    tweets_df = pd.concat(csvlist)
+
     
     
     #表示させる列を選択する。
     greped_df = tweets_df[["Tweet text", "time","impressions","likes", "retweets", "replies" , "engagements" , "url clicks"]]
 
     #指定のカラムで降順で表示させる
-    sorted_df = greped_df.sort_values('engagements', ascending=False)
+    sorted_df = greped_df.sort_values(koumoku, ascending=False)
 
     #データフレーム追加（titleのみ）
     sorted_df['記事内のアフィリエイトリンクのクリック率']    = ''
@@ -41,12 +48,18 @@ def csvGrep(csv1,csv2,csv3,year1,month1,day1,year2,month2,day2):
     sorted_df["time"] = pd.to_datetime(sorted_df['time'])
     print(sorted_df.dtypes)
 
-    sorted_df = sorted_df.set_index('time')
+    #result_df = sorted_df.set_index(index=False)
 
     result_df =sorted_df[(sorted_df['time'] >= dt.datetime(int(year1),int(month1),int(day1))) & (sorted_df['time'] < dt.datetime(int(year2),int(month2),int(day2)))]
     #エクセルへ出力する。
-    result_df.to_excel ('out.xlsx',encoding='cp932')
+    result_df.to_excel ('out.xlsx',encoding='cp932',index=False)
     print(result_df)
+    # メッセージボックス（情報） 
+    messagebox.showinfo('正常終了', '処理を終了します')
+
+
+
+    
 
 
 
@@ -82,7 +95,11 @@ if __name__ == '__main__':
     entry3     = tk.Entry(frame1 , textvariable=file3) 
 
 
+
     grepPeriod    = tk.Label(frame2, text='②抽出期間を指定してください', anchor='w' )
+
+    labelkoumoku    = tk.Label(frame3, text='③並び替え順の項目を選択してください', anchor='w')
+
 
     labelYear1    = tk.Label(frame2, text='年')
     labelMonth1   = tk.Label(frame2, text='月')
@@ -96,8 +113,8 @@ if __name__ == '__main__':
 
     #コンボボックス
     module = ["Tweet text", "time","impressions","likes", "retweets", "replies" , "engagements" , "url clicks"]
-    retu = tk.IntVar()
-    combobox1 = ttk.Combobox(frame2,values=module , height = 2, width = 6 , textvariable= year1, state="readonly" )
+    koumoku = tk.StringVar()
+    comboboxkoumoku = ttk.Combobox(frame3,values=module , height = 2, width = 20 , textvariable= koumoku, state="readonly" )
 
 
     module = ('2020', '2021', '2022', '2023', '2024', '2025')
@@ -127,7 +144,7 @@ if __name__ == '__main__':
 
 
 
-    button1 = ttk.Button(frame4 , text='OK.'    ,command=lambda:csvGrep(file1.get(),file2.get(),file3.get(),year1.get(),month1.get(),day1.get(),year2.get(),month2.get(),day2.get()))
+    button1 = ttk.Button(frame4 , text='OK.'    ,command=lambda:csvGrep(file1.get(),file2.get(),file3.get(),koumoku.get(),year1.get(),month1.get(),day1.get(),year2.get(),month2.get(),day2.get()))
     button2 = ttk.Button(frame4 , text='Cancel.',command="")
 
     '''
@@ -138,8 +155,17 @@ if __name__ == '__main__':
     entry2.pack(fill = 'x', padx=5, side = 'left',pady=20)
     entry3.pack(fill = 'x', padx=5, side = 'left',pady=20,)
 
+
+
+
     grepPeriod.pack (fill = 'x', padx=2, side = 'top',pady=20)
     combobox1.pack  (fill = 'x', padx=2, side = 'left',pady=20)
+    
+
+    labelkoumoku.pack   (fill = 'x', padx=2,side = 'left',pady=20)
+    comboboxkoumoku.pack(fill = 'x', padx=5,pady=20,)
+
+
     labelYear1.pack (fill = 'x', padx=2, side = 'left',pady=20)
     combobox2.pack  (fill = 'x', padx=2, side = 'left',pady=20)
     labelMonth1.pack(fill = 'x', padx=2, side = 'left',pady=20)

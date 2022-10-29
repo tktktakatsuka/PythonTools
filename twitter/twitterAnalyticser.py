@@ -17,11 +17,11 @@ def csvGrep(csv1,csv2,csv3,koumoku,year1,month1,day1,year2,month2,day2):
     csvlist = []
 
     #TweetのデータをDataFrameに格納
-    if csv1 is not "":
+    if csv1 != "":
         csvlist.append(pd.read_csv(csv1))
-    if csv2 is not "":
+    if csv2 != "":
         csvlist.append(pd.read_csv(csv2))
-    if csv3 is not "":
+    if csv3 != "":
         csvlist.append(pd.read_csv(csv3))
 
 
@@ -52,7 +52,7 @@ def csvGrep(csv1,csv2,csv3,koumoku,year1,month1,day1,year2,month2,day2):
 
     result_df =sorted_df[(sorted_df['time'] >= dt.datetime(int(year1),int(month1),int(day1))) & (sorted_df['time'] < dt.datetime(int(year2),int(month2),int(day2)))]
     #エクセルへ出力する。
-    result_df.to_excel ('out.xlsx',encoding='cp932',index=False)
+    result_df.to_csv ('out.csv',encoding='cp932',index=False)
     print(result_df)
     # メッセージボックス（情報） 
     messagebox.showinfo('正常終了', '処理を終了します')

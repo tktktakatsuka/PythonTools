@@ -1,11 +1,9 @@
 
 import os
 # resuests モジュールをインポート
-from operator import truediv
 import re
 import time
-from bs4.builder import HTML
-from openpyxl.xml.constants import ACTIVEX, XLSX
+import openpyxl
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -14,9 +12,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import random
 from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from tkinter import *
 import requests
 
 """
@@ -86,7 +82,6 @@ def getCurrentURLPage(className):
 画面遷移
 '''
 def moveGamen(xpath):
-
     elem = driver.find_element(By.XPATH,xpath)
     elem.click()   
 
@@ -101,12 +96,17 @@ def dbAccess(dbname):
 
 
 def insert_data(str銘柄,str企業名,str優待内容 ,month1 ,month2 ,必要投資金額 ,優待利回り ,配当利回り,url):
-    con = sqlite3.connect('yuutaiTest.sqlite3')
-    cur = con.cursor()
-    sql = f"INSERT INTO yutai (企業名, 銘柄コード,優待内容,権利確定月①,権利確定月②,必要投資金額,優待利回り,配当利回り,URL) values (?,?,?,?,?,?,?,?,?)"     
-    data = [str(str企業名),str(str銘柄),str(str優待内容),str(month1),str(month2),str(必要投資金額),str(優待利回り),str(配当利回り),url]
-    cur.execute(sql, data)
-    con.commit()
+
+    try:
+        sql = f"INSERT INTO yutai (企業名, 銘柄コード,優待内容,権利確定月①,権利確定月②,必要投資金額,優待利回り,配当利回り,URL) values (?,?,?,?,?,?,?,?,?)"     
+        data = [str(str企業名),str(str銘柄),str(str優待内容),str(month1),str(month2),str(必要投資金額),str(優待利回り),str(配当利回り),url]
+        cur.execute(sql, data)
+        con.commit()
+    except sqlite3.IntegrityError:
+        global uniqueCounter
+        uniqueCounter = uniqueCounter +1 
+        pass
+    
     
 """
 mainMethod
@@ -114,9 +114,16 @@ mainMethod
 """
 if __name__ == '__main__':
     
+    
     #グローバル変数
     with webdriver.Chrome(ChromeDriverManager().install()) as driver:
         i = 0
+    
+    
+        con = sqlite3.connect('yuutai.sqlite3')
+        cur = con.cursor()
+        cur.execute('create table IF NOT EXISTS yutai(企業名 , 銘柄コード unique , 優待内容  , 権利確定月① , 権利確定月② , 必要投資金額  , 優待利回り , 配当利回り,URL )')
+        uniqueCounter = 0
         
         MONTHList = ["january", 
                      "february" ,
@@ -233,8 +240,52 @@ if __name__ == '__main__':
                     insert_data(str銘柄,str企業名,str優待内容 ,month1 ,month2 ,必要投資金額 ,優待利回り ,配当利回り, url)
                     coutner= coutner +1
                 i= i+1
-
-
-    #DBに挿入
-
-
+                
+    # 取り出したデータをExcelに貼り付ける --- (*4)
+    from openpyxl.utils import get_column_letter
+    import openpyxl
+    from openpyxl.styles.borders import Border, Side
+    book = openpyxl.load_workbook('Yutai_List.xlsm', keep_vba=True) # 新規ブック作成
+    sheet = book.worksheets[0] # 先頭のシート
+    sql = 'SELECT * FROM yutai'
+    rows = cur.execute(sql)
+    # 罫線(外枠)を設定
+    border = Border(top=Side(style='thin', color='000000'), 
+                    bottom=Side(style='thin', color='000000'), 
+                    left=Side(style='thin', color='000000'),
+                    right=Side(style='thin', color='000000'))
+    
+    for i, n in enumerate(rows): # --- (*4a)
+    
+        sheet.cell(i+5, 1).value = n[0] # 単語
+        sheet.cell(i+5, 2).value = n[1] # 意味
+        sheet.cell(i+5, 3).value = n[2] # 意味
+        sheet.cell(i+5, 4).value = n[3] # 意味
+        sheet.cell(i+5, 5).value = n[4] # 意味
+        sheet.cell(i+5, 6).value = n[5] # 意味
+        sheet.cell(i+5, 7).value = n[6] # 意味
+        sheet.cell(i+5, 8).value = n[7] # 意味
+        sheet.cell(i+5, 9).hyperlink = n[8] # 意味
+        
+    # set column width
+    for col in sheet.columns:
+        max_length = 0
+        column = col[0].column
+    
+        for cell in col:
+            if len(str(cell.value)) > max_length:
+                max_length = len(str(cell.value))
+    
+        adjusted_width = (max_length + 2) * 1.2
+        sheet.column_dimensions[get_column_letter(column)].width = adjusted_width
+    
+    #最大行
+    maxRow = sheet.max_row + 1
+    
+    # セルに罫線を設定
+    for row_num in range(5,maxRow):
+        for col_num in range(1,10):
+            sheet.cell(row=row_num ,column=col_num).border = border
+        
+    # Excelファイルに保存 --- (*5)
+    book.save("yutai_List.xlsm")

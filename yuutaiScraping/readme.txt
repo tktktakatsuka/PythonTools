@@ -1,5 +1,5 @@
 ①yutaiScraping.pyを実行する。
-②Yuutai_List.xlsmのsampleに書き込む
+②Yuutai_List.xlsmのsampleに書き込む仕様にしてあります。
 ③終了
 ④実行後エクセルで管理する場合、【yuutai.sqlite3は削除してください】
 

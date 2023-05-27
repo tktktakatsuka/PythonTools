@@ -1,0 +1,5 @@
+2022-12-08 22:49:57,431 - root - DEBUG - debug message
+2022-12-08 22:49:57,431 - root - INFO - info message
+2022-12-08 22:49:57,431 - root - WARNING - warn message
+2022-12-08 22:49:57,431 - root - ERROR - error message
+2022-12-08 22:49:57,431 - root - CRITICAL - critical message

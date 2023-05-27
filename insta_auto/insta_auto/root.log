@@ -1,0 +1,180 @@
+Start!!!
+Loop Count_1
+Traceback (most recent call last):
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 155, in <module>
+    login()
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 25, in login
+    elementUserNameTextBox = waitElement((By.NAME, userNameTextBoxName), 2)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 114, in waitElement
+    element = wait.until(expected_conditions.presence_of_element_located(elementLocator))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/masakitoriya/.pyenv/versions/3.11.0/lib/python3.11/site-packages/selenium/webdriver/support/wait.py", line 95, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000101356f38 chromedriver + 4910904
+1   chromedriver                        0x00000001012d6a03 chromedriver + 4385283
+2   chromedriver                        0x0000000100f1b747 chromedriver + 472903
+3   chromedriver                        0x0000000100f6034c chromedriver + 754508
+4   chromedriver                        0x0000000100f605a1 chromedriver + 755105
+5   chromedriver                        0x0000000100fa3e94 chromedriver + 1031828
+6   chromedriver                        0x0000000100f8613d chromedriver + 909629
+7   chromedriver                        0x0000000100fa128e chromedriver + 1020558
+8   chromedriver                        0x0000000100f85ee3 chromedriver + 909027
+9   chromedriver                        0x0000000100f5030c chromedriver + 688908
+10  chromedriver                        0x0000000100f5188e chromedriver + 694414
+11  chromedriver                        0x00000001013241de chromedriver + 4702686
+12  chromedriver                        0x0000000101328b19 chromedriver + 4721433
+13  chromedriver                        0x000000010133028e chromedriver + 4752014
+14  chromedriver                        0x000000010132991a chromedriver + 4725018
+15  chromedriver                        0x00000001012fdb02 chromedriver + 4545282
+16  chromedriver                        0x0000000101348888 chromedriver + 4851848
+17  chromedriver                        0x0000000101348a05 chromedriver + 4852229
+18  chromedriver                        0x000000010135ee5f chromedriver + 4943455
+19  libsystem_pthread.dylib             0x00007ff819f994e1 _pthread_start + 125
+20  libsystem_pthread.dylib             0x00007ff819f94f6b thread_start + 15
+
+
+error 1 times
+wait for 3815 secs
+Start!!!
+Loop Count_1
+Traceback (most recent call last):
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 155, in <module>
+    login()
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 25, in login
+    elementUserNameTextBox = waitElement((By.NAME, userNameTextBoxName), 2)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 114, in waitElement
+    element = wait.until(expected_conditions.presence_of_element_located(elementLocator))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/masakitoriya/.pyenv/versions/3.11.0/lib/python3.11/site-packages/selenium/webdriver/support/wait.py", line 95, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000100802a88 chromedriver + 4123272
+1   chromedriver                        0x000000010078e778 chromedriver + 3647352
+2   chromedriver                        0x0000000100450ac4 chromedriver + 248516
+3   chromedriver                        0x0000000100486f68 chromedriver + 470888
+4   chromedriver                        0x00000001004b9020 chromedriver + 675872
+5   chromedriver                        0x000000010047ab10 chromedriver + 420624
+6   chromedriver                        0x000000010047bc30 chromedriver + 425008
+7   chromedriver                        0x00000001007d4ae4 chromedriver + 3934948
+8   chromedriver                        0x00000001007d7f24 chromedriver + 3948324
+9   chromedriver                        0x00000001007d8508 chromedriver + 3949832
+10  chromedriver                        0x00000001007deb30 chromedriver + 3975984
+11  chromedriver                        0x00000001007d8b24 chromedriver + 3951396
+12  chromedriver                        0x00000001007b371c chromedriver + 3798812
+13  chromedriver                        0x00000001007f52f0 chromedriver + 4068080
+14  chromedriver                        0x00000001007f5444 chromedriver + 4068420
+15  chromedriver                        0x0000000100809450 chromedriver + 4150352
+16  libsystem_pthread.dylib             0x0000000186ca426c _pthread_start + 148
+17  libsystem_pthread.dylib             0x0000000186c9f08c thread_start + 8
+
+
+error 1 times
+wait for 3864 secs
+Start!!!
+Loop Count_1
+Traceback (most recent call last):
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 155, in <module>
+    login()
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 28, in login
+    driver.find_element_by_name(passTextBoxName).send_keys('Masaki0213')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WebDriver' object has no attribute 'find_element_by_name'
+
+error 1 times
+wait for 3874 secs
+Start!!!
+Loop Count_1
+Traceback (most recent call last):
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 155, in <module>
+    login()
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 32, in login
+    elementLoginButton = waitElementClickable((By.CLASS_NAME, loginButtonClassName), 2)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 126, in waitElementClickable
+    element = wait.until(expected_conditions.element_to_be_clickable(elementLocator))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/masakitoriya/.pyenv/versions/3.11.0/lib/python3.11/site-packages/selenium/webdriver/support/wait.py", line 95, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000103002a88 chromedriver + 4123272
+1   chromedriver                        0x0000000102f8e778 chromedriver + 3647352
+2   chromedriver                        0x0000000102c50ac4 chromedriver + 248516
+3   chromedriver                        0x0000000102c86f68 chromedriver + 470888
+4   chromedriver                        0x0000000102cb9020 chromedriver + 675872
+5   chromedriver                        0x0000000102c7ab10 chromedriver + 420624
+6   chromedriver                        0x0000000102c7bc30 chromedriver + 425008
+7   chromedriver                        0x0000000102fd4ae4 chromedriver + 3934948
+8   chromedriver                        0x0000000102fd7f24 chromedriver + 3948324
+9   chromedriver                        0x0000000102fd8508 chromedriver + 3949832
+10  chromedriver                        0x0000000102fdeb30 chromedriver + 3975984
+11  chromedriver                        0x0000000102fd8b24 chromedriver + 3951396
+12  chromedriver                        0x0000000102fb371c chromedriver + 3798812
+13  chromedriver                        0x0000000102ff52f0 chromedriver + 4068080
+14  chromedriver                        0x0000000102ff5444 chromedriver + 4068420
+15  chromedriver                        0x0000000103009450 chromedriver + 4150352
+16  libsystem_pthread.dylib             0x0000000186ca426c _pthread_start + 148
+17  libsystem_pthread.dylib             0x0000000186c9f08c thread_start + 8
+
+
+error 1 times
+wait for 3625 secs
+Start!!!
+Loop Count_1
+Traceback (most recent call last):
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 155, in <module>
+    login()
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 32, in login
+    elementLoginButton = waitElementClickable((By.CLASS_NAME, loginButtonClassName), 2)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/masakitoriya/Desktop/insta_auto/insta_auto.py", line 126, in waitElementClickable
+    element = wait.until(expected_conditions.element_to_be_clickable(elementLocator))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/masakitoriya/.pyenv/versions/3.11.0/lib/python3.11/site-packages/selenium/webdriver/support/wait.py", line 95, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+0   chromedriver                        0x000000010444ea88 chromedriver + 4123272
+1   chromedriver                        0x00000001043da778 chromedriver + 3647352
+2   chromedriver                        0x000000010409cac4 chromedriver + 248516
+3   chromedriver                        0x00000001040d2f68 chromedriver + 470888
+4   chromedriver                        0x0000000104105020 chromedriver + 675872
+5   chromedriver                        0x00000001040c6b10 chromedriver + 420624
+6   chromedriver                        0x00000001040c7c30 chromedriver + 425008
+7   chromedriver                        0x0000000104420ae4 chromedriver + 3934948
+8   chromedriver                        0x0000000104423f24 chromedriver + 3948324
+9   chromedriver                        0x0000000104424508 chromedriver + 3949832
+10  chromedriver                        0x000000010442ab30 chromedriver + 3975984
+11  chromedriver                        0x0000000104424b24 chromedriver + 3951396
+12  chromedriver                        0x00000001043ff71c chromedriver + 3798812
+13  chromedriver                        0x00000001044412f0 chromedriver + 4068080
+14  chromedriver                        0x0000000104441444 chromedriver + 4068420
+15  chromedriver                        0x0000000104455450 chromedriver + 4150352
+16  libsystem_pthread.dylib             0x0000000186ca426c _pthread_start + 148
+17  libsystem_pthread.dylib             0x0000000186c9f08c thread_start + 8
+
+
+error 1 times
+wait for 3895 secs
+Start!!!
+Traceback (most recent call last):
+  File "c:\python\work\pythonTools\insta_auto\insta_auto\insta_auto.py", line 152, in <module>
+    driver = webdriver.Chrome('./chromedriver')
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\selenium\webdriver\chrome\webdriver.py", line 69, in __init__
+    super().__init__(DesiredCapabilities.CHROME['browserName'], "goog",
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\selenium\webdriver\chromium\webdriver.py", line 89, in __init__
+    self.service.start()
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\site-packages\selenium\webdriver\common\service.py", line 71, in start
+    self.process = subprocess.Popen(cmd, env=self.env,
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\subprocess.py", line 969, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\subprocess.py", line 1438, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+OSError: [WinError 193] %1 は有効な Win32 アプリケーションではありません。
+
+Start!!!

@@ -77,6 +77,4 @@ selectVlueById('issue_status_id' , '申請中')
 
 checkBoxClickByXpath('//*[@id="issue-form"]/input[1]')
 
-time.sleep(100000)
-
 driver.close()

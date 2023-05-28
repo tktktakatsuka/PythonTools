@@ -19,7 +19,6 @@ base = os.path.dirname(os.path.abspath(__file__))
 
 #config.iniより設定をする
 config_ini.read('config.ini', encoding='utf-8')
-var2 = config_ini.get('DEFAULT', 'Driverpath')
 var3 = config_ini.get('DEFAULT', 'InputWb')
 var4 = config_ini.get('DEFAULT', 'Option')
 var5 = config_ini.get('DEFAULT', 'WaitTime')

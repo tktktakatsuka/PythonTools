@@ -2,9 +2,9 @@
 content title　→  searchresultitem
 
 ・以下追加
-# 画像を削除する処理を実装
+# 実行時に画像を削除する処理を追加実装
 for i in range(len(inputWs._images)):
     del inputWs._images[0]
 
 ・chromeドライバーを指定せずに実行できるようにしておきました。
-
+(実行時に都度都度インストールする。)

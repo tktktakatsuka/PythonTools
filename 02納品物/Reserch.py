@@ -93,6 +93,7 @@ def ProductReserch(num, yoko, startPage , ):
                 #指定のクラスを リストで取得する。
                 taglist = info0.select("[class*='searchresultitem']")
                 #含めないにした時のリスト
+                
                 removedTagList =[]
                 #検索する正規表現を指定
                 pattern = ".*PR.*"     
